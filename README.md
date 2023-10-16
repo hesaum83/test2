@@ -62,13 +62,13 @@
     4-2 ->  
 ## 5- add bitnami repo and install wordpress
     5-1 -> helm repo add bitnami https://charts.bitnami.com/bitnami
-    5-2 -> helm install wp bitnami/wordpress  
+    5-2 -> helm install wp --set wordpressUsername=admin --set wordpressPassword=password --set mariadb.auth.rootPassword=secretpassword bitnami/wordpress  
     5-3 -> verify installation:  
            kubectl get po
            kubectl get svc
            kubectl get ing
     5-4 -> login to wordpress:  
-           https://hessam-sabouri-nl-rg2.maxtld.dev/wp-admin  -> user=user and pass=I6Y8ev0SzX  
+           https://hessam-sabouri-nl-rg2.maxtld.dev/wordpress  -> user=admin and pass=password  
     5-5 -> install wordpress plugin => WPS Hide Login  
     5-6 -> in setting-> permalinks -> change wordpress login address to /wordpress  
     5-7 ->  
@@ -76,7 +76,7 @@
     6-1 -> create ConfigMap for phpmyadmin vhost (add alias)  
     6-2 -> add configmap to phpmyadmin helm template/deployment  
     6-3 -> change ingress from 2, add new path /dbadmin  
-           https://hessam-sabouri-nl-rg2.maxtld.dev/dbadmin/
+           https://hessam-sabouri-nl-rg2.maxtld.dev/dbadmin/  -> user=root , pass=secretpassword
 ## 7- reset cluster
     7-1 -> To delete cluster use:  
             ansible-playbook -i inventory/mycluster/inventory.ini reset.yml
