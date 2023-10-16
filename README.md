@@ -24,8 +24,9 @@ A brief description of what this project does and who it's for
     2-3 -> 
 ## 3- install nfs 
     3-1 -> apt install -y nfs-kernel-server nfs-common
-    3-2 -> helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner --set nfs.server=10.250.10.18 --set nfs.path=/var/nfs  
-    3-3 ->  
+    3-2 -> mkdir /var/nfs ; chmod 777 /var/nfs ; chown -R nobody:nogroup /var/nfs
+    3-3 -> helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner --set nfs.server=10.250.10.18 --set nfs.path=/var/nfs  
+    3-4 -> 
 ## 4- install cert manager  
     4-1 -> kubectl apply  -f https://github.com/cert-manager/cert-manager/releases/download/v1.13.1/cert-manager.yaml  
     4-2 ->  
