@@ -77,6 +77,8 @@
     6-2 -> add configmap to phpmyadmin helm template/deployment  
     6-3 -> change ingress from 2, add new path /dbadmin  
            https://hessam-sabouri-nl-rg2.maxtld.dev/dbadmin/
-    
+## 7- reset cluster
+    7-1 -> To delete cluster use:  
+            ansible-playbook -i inventory/mycluster/inventory.ini reset.yml
 
 
