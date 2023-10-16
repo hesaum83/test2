@@ -1,0 +1,45 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    meta.helm.sh/release-name: wp
+    meta.helm.sh/release-namespace: default
+  creationTimestamp: "2023-10-16T10:24:28Z"
+  generation: 2
+  labels:
+    app.kubernetes.io/instance: wp
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: wordpress
+    app.kubernetes.io/version: 6.3.2
+    helm.sh/chart: wordpress-18.0.6
+  name: wp-wordpress
+  namespace: default
+  resourceVersion: "137467"
+  uid: cdf93349-dde6-4af9-aba7-0833b516a242
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: hessam-sabouri-nl-rg2.maxtld.dev
+    http:
+      paths:
+      - backend:
+          service:
+            name: wp-wordpress
+            port:
+              name: http
+        path: /
+        pathType: ImplementationSpecific
+      - backend:
+          service:
+            name: pma-phpmyadmin
+            port:
+              number: 80
+        path: /dbadmin
+        pathType: ImplementationSpecific
+  tls:
+  - hosts:
+    - hessam-sabouri-nl-rg2.maxtld.dev
+    secretName: hessam-sabouri-nl-rg2.maxtld.dev-tls
+status:
+  loadBalancer: {}
